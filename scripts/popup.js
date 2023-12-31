@@ -2,11 +2,9 @@ window.addEventListener("load", () =>
 	chrome.storage.local.get((result) => {
 		const checkbox = document.getElementById("checkbox");
 		checkbox.checked =
-			result.isPYSToLEnabled === undefined
-				? true
-				: result.isPYSToLEnabled;
+			result.isEnabled === undefined ? true : result.isEnabled;
 		checkbox.addEventListener("change", (event) =>
-			chrome.storage.local.set({ isPYSToLEnabled: event.target.checked })
+			chrome.storage.local.set({ isEnabled: event.target.checked })
 		);
 	})
 );

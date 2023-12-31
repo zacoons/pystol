@@ -1,11 +1,8 @@
 const remove = () =>
 	chrome.storage.local.get((result) => {
-		if (
-			result.isPYSToLEnabled === undefined ? true : result.isPYSToLEnabled
-		) {
+		if (result.isEnabled === undefined ? true : result.isEnabled) {
 			for (const b of document.getElementsByTagName("ytd-browse"))
-				if (b && b.getAttribute("page-subtype") !== "channels")
-					b.remove();
+				if (b && b.getAttribute("page-subtype") === "home") b.remove();
 
 			document.getElementById("related")?.remove();
 		}
