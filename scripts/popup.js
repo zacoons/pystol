@@ -1,10 +1,14 @@
 window.addEventListener("load", () =>
-	chrome.storage.local.get((result) => {
-		const checkbox = document.getElementById("checkbox");
-		checkbox.checked =
-			result.isEnabled === undefined ? true : result.isEnabled;
-		checkbox.addEventListener("change", (event) =>
-			chrome.storage.local.set({ isEnabled: event.target.checked })
-		);
-	})
+    chrome.storage.local.get((res) => {
+        const enabled = document.getElementById("enabled");
+        enabled.checked = res.enabled === undefined || res.enabled;
+        enabled.addEventListener("change", (e) =>
+            chrome.storage.local.set({ enabled: e.target.checked })
+        );
+        const rmComments = document.getElementById("rmComments");
+        rmComments.checked = res.rmComments;
+        rmComments.addEventListener("change", (e) =>
+            chrome.storage.local.set({ rmComments: e.target.checked })
+        );
+    })
 );
